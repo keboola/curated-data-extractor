@@ -15,7 +15,6 @@ class Executor
         $configFile = file_get_contents($dataDir . 'config.json');
         $config = json_decode($configFile, true);
         if (json_last_error() != JSON_ERROR_NONE) {
-            echo $configFile;
             throw new \Exception(json_last_error_msg());
         }
 
@@ -41,8 +40,7 @@ class Executor
             $dataSets = $this->getDataSets($storageToken);
             echo json_encode(['dataSets' => $dataSets]);
         } else {
-            unset($config['image_parameters']['storage_token']);
-            throw new UserException("Invalid action: " . var_export($config));
+            throw new UserException("Invalid action: " . $action);
         }
     }
 
