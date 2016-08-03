@@ -15,6 +15,7 @@ class Executor
         $configFile = file_get_contents($dataDir . 'config.json');
         $config = json_decode($configFile, true);
         if (json_last_error() != JSON_ERROR_NONE) {
+            echo $configFile;
             throw new \Exception(json_last_error_msg());
         }
 
