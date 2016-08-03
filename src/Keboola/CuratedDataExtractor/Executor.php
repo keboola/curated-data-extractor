@@ -36,6 +36,9 @@ class Executor
         } elseif ($action == 'list') {
             $dataSets = $this->getDataSets($storageToken);
             echo json_encode(['dataSets' => $dataSets]);
+        } else {
+            unset($config['image_parameters']['storage_token']);
+            throw new UserException("Invalid action: " . var_export($config));
         }
     }
 
