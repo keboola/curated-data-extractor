@@ -10,7 +10,7 @@ mkdir /data/out/tables/
 file="/data/out/tables/dataset.csv"
 echo $KBC_CONFIG_FILE > /data/config.json
 
-php /code/main.php
+php /code/src/main.php
 
 if [ -f "$file" ]
 then
