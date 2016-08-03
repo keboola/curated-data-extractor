@@ -1,5 +1,7 @@
 <?php
 
+echo "Extractor starting...";
+
 require __DIR__ . "/../vendor/autoload.php";
 
 $main = new Keboola\CuratedDataExtractor\Executor();
