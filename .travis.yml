@@ -16,7 +16,7 @@ before_script:
   - docker -v
   - docker-compose -v
   - docker-compose build curated-data-extractor
-script: docker-compose run --rm --entrypoint sh -e KBC_DATADIR=/data/ -e KBC_CONFIG_FILE=$KBC_CONFIG_FILE curated-data-extractor /code/tests.sh
+script: docker-compose run --rm --entrypoint sh -e KBC_DATADIR=/data/ -e KBC_CONFIG_FILE='$KBC_CONFIG_FILE' curated-data-extractor /code/tests.sh
 after_success:
   - docker images
 deploy:

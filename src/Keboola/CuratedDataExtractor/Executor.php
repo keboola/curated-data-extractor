@@ -19,16 +19,16 @@ class Executor
         }
 
         $action = $config['action'];
-        $storageToken = $config['image_parameters']['storage_token'];
+        if (empty($config['image_parameters']['#storage_token'])) {
+            throw new \Exception("storage_token must be set in image parameters.");
+        }
+        $storageToken = $config['image_parameters']['#storage_token'];
         if ($action == 'run') {
             if (count($config['storage']['output']['tables']) != 1) {
-                throw new UserException("Exactly one table must be set in outputmaping.");
+                throw new UserException("Exactly one table must be set in output mapping.");
             }
             if (empty($config['parameters']['dataset'])) {
                 throw new UserException("Dataset is a required parameter.");
-            }
-            if (empty($config['image_parameters']['storage_token'])) {
-                throw new \Exception("storage_token must be set in image parameters.");
             }
 
             $outputFile = $config['storage']['output']['tables'][0]['source'];
