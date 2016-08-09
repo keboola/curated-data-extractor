@@ -38,7 +38,7 @@ class Executor
             echo "Dataset obtained.\n";
         } elseif ($action == 'list') {
             $dataSets = $this->getDataSets($storageToken);
-            echo json_encode(['dataSets' => $dataSets]);
+            echo json_encode(['datasets' => $dataSets]);
         } else {
             throw new UserException("Invalid action: " . $action);
         }
