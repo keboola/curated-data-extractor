@@ -65,9 +65,14 @@ class Executor
         $tables = $client->listTables(null, ['attributes']);
         $dataSets = [];
         foreach ($tables as $table) {
-            $attribute = $this->getAttribute($table['attributes'], 'curated.data.name');
-            if ($attribute) {
-                $dataSets[$table['id']] = $attribute;
+            $name = $this->getAttribute($table['attributes'], 'curated.data.name');
+            $description = $this->getAttribute($table['attributes'], 'curated.data.description');
+            if ($name) {
+                $dataSets[$table['id']] = [
+                    'id' => $table['id'],
+                    'name' => $name,
+                    'description' => $description
+                ];
             }
         }
         return $dataSets;
