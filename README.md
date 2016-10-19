@@ -59,3 +59,22 @@ With [standard request body](https://developers.keboola.com/extend/common-interf
     }
 }
 ```
+
+## Adding new datasets
+
+- Upload a table to project Shared Data (452).
+- Add table attribute `curated.data.name` with dataset name of your choice
+- Optionally add table attribute `curated.data.description`
+- Add the dataset to the UI template in component configuration:
+```
+      "enum": [
+        "in.c-ex-currency.rates",
+        "in.c-ex-currency.rates-usd"
+      ],
+      "options": {
+        "enum_titles": [
+          "Currency Rates (EUR)",
+          "Currency Rates (USD)"
+        ]
+      }
+```

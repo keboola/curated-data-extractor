@@ -24,17 +24,15 @@ class Executor
         }
         $storageToken = $config['image_parameters']['#storage_token'];
         if ($action == 'run') {
-            if (count($config['storage']['output']['tables']) != 1) {
-                throw new UserException("Exactly one table must be set in output mapping.");
-            }
             if (empty($config['parameters']['dataset'])) {
                 throw new UserException("Dataset is a required parameter.");
             }
 
-            $outputFile = $config['storage']['output']['tables'][0]['source'];
             $dataSet = $config['parameters']['dataset'];
+            // use only table name as file name
+            $outName = substr($dataSet, strrpos($dataSet, '.') + 1);
             echo "Getting dataset $dataSet.\n";
-            $this->exportDataSet($storageToken, $dataSet, $dataDir, $outputFile);
+            $this->exportDataSet($storageToken, $dataSet, $dataDir, $outName . '.csv');
             echo "Dataset obtained.\n";
         } elseif ($action == 'list') {
             $dataSets = $this->getDataSets($storageToken);
