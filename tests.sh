@@ -8,7 +8,7 @@ php --version \
 mkdir /data/
 mkdir /data/out/
 mkdir /data/out/tables/
-file="/data/out/tables/dataset.csv"
+file="/data/out/tables/rates-usd.csv"
 echo $KBC_CONFIG_FILE > /data/config.json
 
 php /code/src/main.php
