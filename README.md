@@ -1,4 +1,7 @@
 # Curated Data Extractor
+
+[![Build Status](https://travis-ci.org/keboola/google-drive-writer.svg?branch=master)](https://travis-ci.org/keboola/google-drive-writer)
+
 This extractor extracts prepared data sets from KBC Shared Data project (452) and is registered as `keboola.ex-curated.data` docker component. Prepared
 data sets are data independent on customer, which are preloaded in KBC (e.g Currency exchange rates)
 
