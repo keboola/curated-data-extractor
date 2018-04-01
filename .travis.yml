@@ -1,29 +1,35 @@
+sudo: required
+
 language: bash
+
 services:
-- docker
+  - docker
+
 before_script:
-- docker -v
-- docker build -t $APP_IMAGE .
-- docker run $APP_IMAGE -e KBC_TEST_TOKEN -e KBC_TEST_URL composer ci
-- docker pull quay.io/keboola/developer-portal-cli-v2:latest
-- export REPOSITORY=`docker run --rm -e KBC_DEVELOPERPORTAL_USERNAME -e KBC_DEVELOPERPORTAL_PASSWORD
-  -e KBC_DEVELOPERPORTAL_URL quay.io/keboola/developer-portal-cli-v2:latest ecr:get-repository
-  $KBC_DEVELOPERPORTAL_VENDOR $KBC_DEVELOPERPORTAL_APP`
-- docker tag $APP_IMAGE:latest $REPOSITORY:test
-- eval $(docker run --rm -e KBC_DEVELOPERPORTAL_USERNAME -e KBC_DEVELOPERPORTAL_PASSWORD
-  -e KBC_DEVELOPERPORTAL_URL quay.io/keboola/developer-portal-cli-v2:latest ecr:get-login
-  $KBC_DEVELOPERPORTAL_VENDOR $KBC_DEVELOPERPORTAL_APP)
-- docker push $REPOSITORY:test
-- docker pull quay.io/keboola/syrup-cli:latest
+  - docker -v
+  - docker build -t $APP_IMAGE .
+  - docker run -e KBC_TEST_TOKEN -e KBC_TEST_URL $APP_IMAGE composer ci
+
+  # push test image to ECR
+  - docker pull quay.io/keboola/developer-portal-cli-v2:latest
+  - export REPOSITORY=`docker run --rm -e KBC_DEVELOPERPORTAL_USERNAME -e KBC_DEVELOPERPORTAL_PASSWORD -e KBC_DEVELOPERPORTAL_URL quay.io/keboola/developer-portal-cli-v2:latest ecr:get-repository $KBC_DEVELOPERPORTAL_VENDOR $KBC_DEVELOPERPORTAL_APP`
+  - docker tag $APP_IMAGE:latest $REPOSITORY:test
+  - eval $(docker run --rm -e KBC_DEVELOPERPORTAL_USERNAME -e KBC_DEVELOPERPORTAL_PASSWORD -e KBC_DEVELOPERPORTAL_URL quay.io/keboola/developer-portal-cli-v2:latest ecr:get-login $KBC_DEVELOPERPORTAL_VENDOR $KBC_DEVELOPERPORTAL_APP)
+  - docker push $REPOSITORY:test
+  - docker pull quay.io/keboola/syrup-cli:latest
+
+
 script:
-- docker run --rm -e KBC_STORAGE_TOKEN quay.io/keboola/syrup-cli:latest run-job $KBC_DEVELOPERPORTAL_APP
-  $KBC_APP_TEST_CONFIG_ID test
+  # run test job inside KBC
+  - docker run --rm -e KBC_STORAGE_TOKEN quay.io/keboola/syrup-cli:latest run-job $KBC_DEVELOPERPORTAL_APP $KBC_APP_TEST_CONFIG_ID test
+
 deploy:
   provider: script
   skip_cleanup: true
-  script: "./deploy.sh"
+  script: ./deploy.sh
   on:
     tags: true
+
 notifications:
   slack:
     secure: n5EmiXSva2fcjQhsI4sn/l5YKkk9hoCKQubF5PYP6nxW1ZVIHUwu0riY8p3sXk6FOUm8IQZjlaoZ1jX4UkxreWoff6HoorFnw+zhvHMlZMcHG1QejtYhSGjvsH+6wVtEMVBpaYLiDeqe8PoN7FCQlu3pAR5bh/10Qh+v+PBBVzT2EqFXx3umHrK/0JQ/598RVOvTy+VvmLStNauIhmSqsXbp8mE7UNBGOBJt8NB+ztcOGz62103iYYZrQz9MstZFGOCPhDbbOx40uPGR71zPacRuus5riYlXs9YprHyNrePV6IwIvMH43ixSssJ5wBy7/98oPnh/BpwtL8DmZZCTuDvxZq6zVwercORM67twYrFCrhTDXmyLb6190jE0p7CaOdSH7VJBX2yjgysvDghht9De0jnRkegm7xbgV3pgy0OaulItp1rTMesZ52SiBF5l5IyaKU2PLOz0bK00QniJtyp+8+h6HM/FTAbQfOA4ujGi2ojhc7SBCAfyeCdihJbiKn6Ell3nC69cpyrK9STqehezuTMgBkJZSkYvJIIgV1CIS6f6QIzZb0Ho56a5MUHMB6fSaDf87qIfpEEJZOj7IIruAn9NKwwdYFCOYLzRAW+s8ucG3js4F4tMcCWn7y9tmU2fyxKJs+x5KvSo/QeNVz7ZKt4qCm+GzKvwHH13PtI=
