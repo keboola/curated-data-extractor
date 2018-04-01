@@ -4,7 +4,7 @@ services:
 before_script:
 - docker -v
 - docker build -t $APP_IMAGE .
-- docker run $APP_IMAGE composer ci
+- docker run $APP_IMAGE -e KBC_TEST_TOKEN -e KBC_TEST_URL composer ci
 - docker pull quay.io/keboola/developer-portal-cli-v2:latest
 - export REPOSITORY=`docker run --rm -e KBC_DEVELOPERPORTAL_USERNAME -e KBC_DEVELOPERPORTAL_PASSWORD
   -e KBC_DEVELOPERPORTAL_URL quay.io/keboola/developer-portal-cli-v2:latest ecr:get-repository
