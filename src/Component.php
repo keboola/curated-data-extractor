@@ -23,7 +23,7 @@ class Component extends BaseComponent
         $config = $this->getConfig();
         $this->client = new Client([
             'token' => $config->getValue(['image_parameters', '#storage_token']),
-            'url' => $config->getValue(['image_parameters', 'storage_url'])
+            'url' => $config->getValue(['image_parameters', 'storage_url']),
         ]);
 
         if ($action == 'run') {

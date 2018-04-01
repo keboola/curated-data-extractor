@@ -32,7 +32,7 @@ class StorageBrowser
                 $dataSets[$table['id']] = [
                     'id' => $table['id'],
                     'name' => $name,
-                    'description' => $description
+                    'description' => $description,
                 ];
             }
         }
