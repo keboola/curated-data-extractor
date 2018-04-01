@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.52.35",
+            "version": "3.53.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "3210be6caaf81dfbbafe5b6623408a3c55d313a0"
+                "reference": "225593974bb6f6b1c13ddf946d3736d3e39119e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3210be6caaf81dfbbafe5b6623408a3c55d313a0",
-                "reference": "3210be6caaf81dfbbafe5b6623408a3c55d313a0",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/225593974bb6f6b1c13ddf946d3736d3e39119e5",
+                "reference": "225593974bb6f6b1c13ddf946d3736d3e39119e5",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-03-28T22:07:39+00:00"
+            "time": "2018-03-30T20:22:38+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -353,16 +353,16 @@
         },
         {
             "name": "keboola/storage-api-client",
-            "version": "10.1.0",
+            "version": "10.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/storage-api-php-client.git",
-                "reference": "1efbba856690500fb87cd8cb4d90a92bab870abd"
+                "reference": "079e1b1d9575dca9c0490a4ae456387603ca5b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/storage-api-php-client/zipball/1efbba856690500fb87cd8cb4d90a92bab870abd",
-                "reference": "1efbba856690500fb87cd8cb4d90a92bab870abd",
+                "url": "https://api.github.com/repos/keboola/storage-api-php-client/zipball/079e1b1d9575dca9c0490a4ae456387603ca5b2e",
+                "reference": "079e1b1d9575dca9c0490a4ae456387603ca5b2e",
                 "shasum": ""
             },
             "require": {
@@ -395,7 +395,7 @@
             ],
             "description": "Keboola Storage API PHP CLient",
             "homepage": "http://keboola.com",
-            "time": "2018-03-29T19:16:03+00:00"
+            "time": "2018-03-29T19:18:32+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
