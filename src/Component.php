@@ -27,15 +27,11 @@ class Component extends BaseComponent
         ]);
 
         if ($action == 'run') {
-            if (empty($config->getDataSet())) {
-                throw new UserException("Dataset is a required parameter.");
-            }
-
-            $dataSet = $config['parameters']['dataset'];
+            $dataSet = $config->getDataSet();
             // use only table name as file name
             $outName = substr($dataSet, strrpos($dataSet, '.') + 1);
             echo "Getting dataset $dataSet.\n";
-            $this->exportDataSet($dataSet, $outName . '.csv');
+            $this->exportDataSet($dataSet, $outName);
             echo "Dataset obtained.\n";
         } elseif ($action == 'list') {
             $dataSets = (new StorageBrowser($this->client))->getDataSets();
