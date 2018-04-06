@@ -1,10 +1,8 @@
 version: '2'
 services:
-  curated-data-extractor:
+  dev:
     build: .
-    image: keboola/curated-data-extractor
-    tty: true
-    stdin_open: true
-    command: bash
+    image: keboola/my-component
     volumes:
       - ./:/code
+      - ./data:/data
