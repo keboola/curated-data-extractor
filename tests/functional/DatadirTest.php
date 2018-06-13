@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Keboola\Processor\CreateManifest\Tests;
 
@@ -13,6 +12,7 @@ use Keboola\StorageApi\Client;
 use Keboola\StorageApi\ClientException;
 use Keboola\StorageApi\Metadata;
 
+/** @noinspection PhpUnhandledExceptionInspection */
 class DatadirTest extends DatadirTestCase
 {
     /**

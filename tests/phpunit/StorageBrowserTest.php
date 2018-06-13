@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Keboola\CuratedDataExtractor\Tests;
 
@@ -13,6 +12,7 @@ use Keboola\StorageApi\Metadata;
 use Keboola\Temp\Temp;
 use PHPUnit\Framework\TestCase;
 
+/** @noinspection PhpUnhandledExceptionInspection */
 class StorageBrowserTest extends TestCase
 {
     /**
