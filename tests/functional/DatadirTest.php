@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Keboola\Processor\CreateManifest\Tests;
+namespace Keboola\CuratedDataExtractor\Tests;
 
 use Keboola\Csv\CsvFile;
 use Keboola\DatadirTests\DatadirTestCase;
@@ -12,9 +12,9 @@ use Keboola\StorageApi\Client;
 use Keboola\StorageApi\ClientException;
 use Keboola\StorageApi\Metadata;
 
-/** @noinspection PhpUnhandledExceptionInspection */
 class DatadirTest extends DatadirTestCase
 {
+
     /**
      * @var Client
      */

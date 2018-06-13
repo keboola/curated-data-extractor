@@ -12,7 +12,6 @@ use Keboola\StorageApi\Metadata;
 use Keboola\Temp\Temp;
 use PHPUnit\Framework\TestCase;
 
-/** @noinspection PhpUnhandledExceptionInspection */
 class StorageBrowserTest extends TestCase
 {
     /**
