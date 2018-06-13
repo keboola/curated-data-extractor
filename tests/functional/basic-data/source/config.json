@@ -1,0 +1,10 @@
+{
+	"parameters": {
+		"dataset": "in.c-curated-data-tests.some-table"
+	},
+	"image_parameters": {
+		"#storage_token": "",
+		"storage_url": ""
+	},
+	"action": "run"
+}
