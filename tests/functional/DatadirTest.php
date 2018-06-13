@@ -1,5 +1,7 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
 declare(strict_types=1);
+/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Keboola\Processor\CreateManifest\Tests;
 
@@ -46,7 +48,7 @@ class DatadirTest extends DatadirTestCase
         self::markTestSkipped();
     }
 
-    public function testExtract()
+    public function testExtract() : void
     {
         $csv = new CsvFile(__DIR__ . '/basic-data/expected/tables/some-table');
         $this->client->createTable('in.c-curated-data-tests', 'some-table', $csv);
@@ -88,12 +90,12 @@ class DatadirTest extends DatadirTestCase
         $this->assertMatchesSpecification($specification, $process, $tempDatadir->getTmpFolder());
     }
 
-    public function testExtractEmptyDataset()
+    public function testExtractEmptyDataset() : void
     {
         $specification = new DatadirTestSpecification(
             __DIR__ . '/basic-data/source/',
             1,
-            'The path "root.parameters.dataset" cannot contain an empty value, but got "".'
+            'cannot contain an empty value, but got "".'
         );
         $tempDatadir = $this->getTempDatadir($specification);
         $data = json_decode(file_get_contents($tempDatadir->getTmpFolder()  . '/config.json'), true);

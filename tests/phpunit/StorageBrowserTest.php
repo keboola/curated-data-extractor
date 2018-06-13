@@ -1,6 +1,7 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
 
 declare(strict_types=1);
+/** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Keboola\CuratedDataExtractor\Tests;
 
