@@ -2,19 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Keboola\CuratedDataExtractor\Tests;
+namespace Keboola\CuratedDataExtractor\Tests\Functional;
 
 use Keboola\Csv\CsvFile;
-use Keboola\DatadirTests\DatadirTestCase;
+use Keboola\DatadirTests\AbstractDatadirTestCase;
 use Keboola\DatadirTests\DatadirTestSpecification;
-use Keboola\DatadirTests\DatadirTestSpecificationInterface;
 use Keboola\StorageApi\Client;
 use Keboola\StorageApi\ClientException;
 use Keboola\StorageApi\Metadata;
 
-class DatadirTest extends DatadirTestCase
+class DatadirTest extends AbstractDatadirTestCase
 {
-
     /**
      * @var Client
      */
@@ -40,17 +38,9 @@ class DatadirTest extends DatadirTestCase
         $this->client->createBucket('curated-data-tests', 'in', 'Curated data extractor tests');
     }
 
-    /**
-     * @dataProvider provideDatadirSpecifications
-     */
-    public function testDatadir(DatadirTestSpecificationInterface $specification): void
-    {
-        self::markTestSkipped();
-    }
-
     public function testExtract() : void
     {
-        $csv = new CsvFile(__DIR__ . '/basic-data/expected/tables/some-table');
+        $csv = new CsvFile(__DIR__ . '/basic-data/tables/some-table');
         $this->client->createTable('in.c-curated-data-tests', 'some-table', $csv);
         $metadata = new Metadata($this->client);
         $metadata->postTableMetadata(
@@ -69,16 +59,23 @@ class DatadirTest extends DatadirTestCase
         );
 
         $specification = new DatadirTestSpecification(
-            __DIR__ . '/basic-data/source/',
+            null,
             0,
             null,
             null,
-            __DIR__ . '/basic-data/expected/'
+            __DIR__ . '/basic-data/'
         );
         $tempDatadir = $this->getTempDatadir($specification);
-        $data = json_decode(file_get_contents($tempDatadir->getTmpFolder()  . '/config.json'), true);
-        $data['image_parameters']['#storage_token'] = getenv('KBC_TEST_TOKEN');
-        $data['image_parameters']['storage_url'] = getenv('KBC_TEST_URL');
+        $data = [
+            'parameters' => [
+                'dataset' => 'in.c-curated-data-tests.some-table',
+            ],
+            'image_parameters' => [
+                '#storage_token' => getenv('KBC_TEST_TOKEN'),
+                'storage_url' => getenv('KBC_TEST_URL'),
+            ],
+            'action' => 'run',
+        ];
         file_put_contents($tempDatadir->getTmpFolder()  . '/config.json', json_encode($data));
         $process = $this->runScript($tempDatadir->getTmpFolder());
 
@@ -93,15 +90,21 @@ class DatadirTest extends DatadirTestCase
     public function testExtractEmptyDataset() : void
     {
         $specification = new DatadirTestSpecification(
-            __DIR__ . '/basic-data/source/',
+            null,
             1,
-            'cannot contain an empty value, but got "".'
+            'The path "root.parameters.dataset" cannot contain an empty value, but got "".'
         );
         $tempDatadir = $this->getTempDatadir($specification);
-        $data = json_decode(file_get_contents($tempDatadir->getTmpFolder()  . '/config.json'), true);
-        $data['image_parameters']['#storage_token'] = getenv('KBC_TEST_TOKEN');
-        $data['image_parameters']['storage_url'] = getenv('KBC_TEST_URL');
-        $data['parameters']['dataset'] = '';
+        $data = [
+            'parameters' => [
+                'dataset' => '',
+            ],
+            'image_parameters' => [
+                '#storage_token' => getenv('KBC_TEST_TOKEN'),
+                'storage_url' => getenv('KBC_TEST_URL'),
+            ],
+            'action' => 'run',
+        ];
         file_put_contents($tempDatadir->getTmpFolder()  . '/config.json', json_encode($data));
         $process = $this->runScript($tempDatadir->getTmpFolder());
         $this->assertMatchesSpecification($specification, $process, $tempDatadir->getTmpFolder());

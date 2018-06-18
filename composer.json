@@ -31,7 +31,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Keboola\\CuratedDataExtractor\\Tests\\": "tests/phpunit/"
+            "Keboola\\CuratedDataExtractor\\Tests\\": "tests/phpunit/",
+            "Keboola\\CuratedDataExtractor\\Tests\\Functional\\": "tests/functional/"
         }
     },
     "scripts": {
