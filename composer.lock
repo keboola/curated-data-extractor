@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37580b7e8290557bdc9879b6e9968a7c",
+    "content-hash": "4c77fb386c069df8eaeddd03e3b718e5",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -981,16 +981,16 @@
         },
         {
             "name": "keboola/datadir-tests",
-            "version": "dev-tf2-rf",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/keboola/datadir-tests.git",
-                "reference": "fb3310cb381dfe2d59f28f81742cc6e28fb96b8f"
+                "reference": "45531cbd546ce0dbb0f8c4b73301349c6d507be7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/keboola/datadir-tests/zipball/fb3310cb381dfe2d59f28f81742cc6e28fb96b8f",
-                "reference": "fb3310cb381dfe2d59f28f81742cc6e28fb96b8f",
+                "url": "https://api.github.com/repos/keboola/datadir-tests/zipball/45531cbd546ce0dbb0f8c4b73301349c6d507be7",
+                "reference": "45531cbd546ce0dbb0f8c4b73301349c6d507be7",
                 "shasum": ""
             },
             "require": {
@@ -1017,7 +1017,7 @@
                 "MIT"
             ],
             "description": "Tool for functional testing of Keboola Connection components",
-            "time": "2018-06-14T09:05:08+00:00"
+            "time": "2018-06-19T09:16:12+00:00"
         },
         {
             "name": "keboola/php-temp",
@@ -2550,9 +2550,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "keboola/datadir-tests": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
