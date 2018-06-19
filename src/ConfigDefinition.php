@@ -16,7 +16,7 @@ class ConfigDefinition extends BaseConfigDefinition
         /** @noinspection NullPointerExceptionInspection */
         $parametersNode
             ->children()
-                ->scalarNode('dataset')->defaultValue('')
+                ->scalarNode('dataset')->cannotBeEmpty()->isRequired()
                 ->end()
             ->end()
         ;
