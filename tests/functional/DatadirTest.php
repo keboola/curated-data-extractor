@@ -92,7 +92,8 @@ class DatadirTest extends AbstractDatadirTestCase
         $specification = new DatadirTestSpecification(
             null,
             1,
-            'The path "root.parameters.dataset" cannot contain an empty value, but got "".'
+            null,
+            'The path "root.parameters.dataset" cannot contain an empty value, but got "".' . "\n"
         );
         $tempDatadir = $this->getTempDatadir($specification);
         $data = [
