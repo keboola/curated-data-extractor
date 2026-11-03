@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "id": "in.c-curated.empty-description",
+            "bucketId": "in.c-curated",
+            "name": "empty-description",
+            "description": "native description of a table without a data set description",
+            "metadata": [
+                {"id": "3", "key": "KBC.name", "value": "No description", "provider": "keboola.ex-curated-data", "timestamp": "2026-10-01T10:00:00+0200"}
+            ]
+        }
+    ],
+    "meta": {"total": 3, "limit": 2},
+    "links": {
+        "self": "https://connection.example.com/v2/storage/branch/default/table-list?include=metadata&page[limit]=2&page[after]=eyJhIjoiYiJ9",
+        "first": "https://connection.example.com/v2/storage/branch/default/table-list?include=metadata&page[limit]=2",
+        "next": null
+    }
+}
